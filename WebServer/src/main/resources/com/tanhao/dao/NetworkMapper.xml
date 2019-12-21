@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间特殊作用： 如果使用mapper动态代理方法，这里就需要配置mapper接口地址-->
+
+<mapper namespace="com.tanhao.dao.NetworkMapper">
+
+	<!-- 根据用户id查询一条记录（返回单条记录） -->
+	<!-- 
+	select标签表示sql查询，内容会封装到Mapped Statement中。
+	可以将这个select标签称为一个Statement
+	id：Statement的id，用于标识select中定义的 sql，id是在同一个命名空间中不允许重复
+	#{}：表示一个占位符，避免sql注入
+	parameterType：表示输入参数的类型
+	resultType：表示输出 结果集单条记录映射的java对象类型，select查询的字段名和resultType中属性名一致，才能映射成功。
+	#{value}：value表示parameter输入参数的变量，如果输入参数是简单类型，使用#{}占位符，变量名可以使用value或其它的名称 
+	 -->
+	<select id="findNetworkById" parameterType="String" resultType="network" >
+		SELECT * FROM Network WHERE id = #{id}
+	</select>
+
+	<update id="updateNetwork" parameterType="com.tanhao.bean.Network" >
+		update network set name=#{name},locationX=#{locationX},locationY=#{locationY}  where id=#{id}
+	</update>
+
+	<delete id="deleteNetworkById" parameterType="String">
+		delete from network where id=#{id}
+	</delete>
+
+	<!-- 添加网络
+	parameterType：如果parameterType指定 是pojo，在#{}中指定 pojo的属性名获取该pojo的属性值
+	 -->
+	<insert id="insertNetwork" parameterType="com.tanhao.bean.Network" >
+		insert into network(id,name,locationX,locationY)
+		values(#{id},#{name},#{locationX},#{locationY})
+	</insert>
+
+	<select id="getAllNetwork" resultType="com.tanhao.bean.Network" >
+		SELECT * FROM Network
+	</select>
+	
+</mapper>

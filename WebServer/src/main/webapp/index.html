@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+<head>
+    <meta charset="UTF-8">
+    <title>分布式网络监控系统</title>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap-theme.css">
+
+    <script src="jslib/jquery.js"></script>
+    <script src="jslib/jtopo-0.4.8-min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+    <script src="js/topoApi.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/websocket.js"></script>
+</head>
+
+<body style="margin: 1%">
+<div class="page-header">
+    <h1>分布式网络监控系统
+        <small>v0.1</small>
+        <!--<small >系统当前共有1台采集服务器上线，共监测设备数量为：100台</small>-->
+    </h1>
+
+</div>
+
+
+
+<div align="left" class="btn-group" role="group">
+    <button id="returnRootNetworkButton" type="button" class="btn btn-default" >回到根网络</button>
+    <button id="addNetworkButton" type="button" class="btn btn-default">增加网络</button>
+    <button id="addNodeButton" type="button" class="btn btn-default">增加设备</button>
+    <button id="deleteButton" type="button" class="btn btn-default">删除</button>
+    <button id = "saveLocationButton" type="button" class="btn btn-default" >保存位置</button>
+
+</div>
+
+<div id="content" width="100%">
+    <canvas width="1300" height="550" id="canvas"></canvas>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">增加网络</h4>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon">网络名称</span>
+                    <input id= "networkName" type="text" class="form-control" placeholder="输入网络名" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="createNetworkButton">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addNodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">增加设备</h4>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon">设备名称</span>
+                    <input id= "nodeName" type="text" class="form-control" placeholder="输入设备名" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon">设备IP</span>
+                    <input id= "nodeIp" type="text" class="form-control" placeholder="输入IP地址" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon">设备团体字</span>
+                    <input id= "passwordInput" type="text" class="form-control" placeholder="输入设备团体字" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="createNodeButton">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间特殊作用： 如果使用mapper动态代理方法，这里就需要配置mapper接口地址-->
+
+<mapper namespace="com.tanhao.dao.NodeMapper">
+
+    <select id="selectByNetworkId" resultType="com.tanhao.bean.Node" parameterType="String">
+        SELECT * FROM node where networkId =  #{networkId}
+    </select>
+
+    <select id="findNodeById" resultType="com.tanhao.bean.Node" parameterType="String">
+        SELECT * FROM node where id =  #{id}
+    </select>
+
+    <insert id="insertNode" parameterType="com.tanhao.bean.Node" >
+        insert into node(id,name,locationX,locationY,ip,password,networkId)
+        values(#{id},#{name},#{locationX},#{locationY},#{ip},#{password},#{networkId})
+    </insert>
+
+    <update id="updateNode" parameterType="com.tanhao.bean.Node" >
+        update node set name=#{name},locationX=#{locationX},locationY=#{locationY}  where id=#{id}
+    </update>
+
+    <select id="selectAllNode" resultType="com.tanhao.bean.Node">
+        SELECT * FROM node
+    </select>
+
+    <delete id="deleteNodeById" parameterType="String">
+        delete from node where id = #{id}
+    </delete>
+
+</mapper>
